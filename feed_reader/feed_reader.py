@@ -1,7 +1,6 @@
 # Standard Libraries
 import asyncio
 from datetime import datetime
-import future
 import logging
 import operator
 from pprint import (pformat, pprint)
@@ -143,7 +142,7 @@ class FeedReader(object):
         Retrieve *list* of feeds via asynchronous processing.
         """
         feeds = [self.parse_feed(url=feed_url) for feed_url in self.urls]
-        future = asyncio.gather(*feeds, return_exceptions=True, loop=self.loop)
+        future = asyncio.gather(*feeds, return_exceptions=True)
 
         self.loop.run_until_complete(future)
 
